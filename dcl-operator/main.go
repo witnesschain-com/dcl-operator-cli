@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/urfave/cli/v2"
-	wc_common "github.com/witnesschain-com/dcl-operator-cli/common"
 	operator_commands "github.com/witnesschain-com/dcl-operator-cli/dcl-operator/commands"
+	op_common "github.com/witnesschain-com/operator-cli/common"
 )
 
 var VERSION string = "UNKNOWN"
@@ -28,7 +28,7 @@ func main() {
 	app.Copyright = "(c) 2024 WitnessChain"
 
 	app.Commands = []*cli.Command{
-		wc_common.KeysCmd(),
+		op_common.KeysCmd(),
 		operator_commands.RegisterProverCmd(),
 		operator_commands.DeRegisterProverCmd(),
 	}
@@ -38,9 +38,9 @@ func main() {
 		if err != nil {
 			return
 		}
-		wc_common.Unmount()
+		op_common.Unmount()
 		os.Exit(1)
 	}
 
-	wc_common.Unmount()
+	op_common.Unmount()
 }

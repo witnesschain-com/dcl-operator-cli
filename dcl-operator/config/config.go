@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"os"
 
-	wc_common "github.com/witnesschain-com/dcl-operator-cli/common"
+	op_common "github.com/witnesschain-com/operator-cli/common"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
@@ -29,17 +29,17 @@ func GetConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 	fmt.Printf("Using config file path : %s\n", configFilePath)
 
 	data, err := os.ReadFile(configFilePath)
-	wc_common.CheckError(err, "Error reading json file")
+	op_common.CheckError(err, "Error reading json file")
 
 	// Parse the json data into a struct
 	var config OperatorConfig
 	err = json.Unmarshal(data, &config)
-	wc_common.CheckError(err, "Error unmarshaling json data")
+	op_common.CheckError(err, "Error unmarshaling json data")
 
 	SetDefaultConfigValues(&config)
 
 	if config.UseEncryptedKeys {
-		wc_common.UseEncryptedKeys()
+		op_common.UseEncryptedKeys()
 	}
 
 	return &config
