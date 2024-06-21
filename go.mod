@@ -4,9 +4,8 @@ go 1.22.2
 
 require (
 	github.com/ethereum/go-ethereum v1.14.3
-	github.com/howeyc/gopass v0.0.0-20210920133722-c8aef6fb66ef
 	github.com/urfave/cli/v2 v2.27.2
-	github.com/wagslane/go-password-validator v0.3.0
+	github.com/witnesschain-com/operator-cli v0.1.1-0.20240517152649-5cf07a911f04
 )
 
 require (
@@ -26,13 +25,14 @@ require (
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/holiman/uint256 v1.2.4 // indirect
+	github.com/howeyc/gopass v0.0.0-20210920133722-c8aef6fb66ef // indirect
 	github.com/mmcloughlin/addchain v0.4.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
 	github.com/supranational/blst v0.3.11 // indirect
 	github.com/tklauser/go-sysconf v0.3.12 // indirect
 	github.com/tklauser/numcpus v0.6.1 // indirect
-	github.com/witnesschain-com/operator-cli v0.1.1-0.20240517152649-5cf07a911f04 // indirect
+	github.com/wagslane/go-password-validator v0.3.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 // indirect
 	golang.org/x/crypto v0.22.0 // indirect
 	golang.org/x/mod v0.17.0 // indirect

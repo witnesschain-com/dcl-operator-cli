@@ -13,15 +13,17 @@ import (
 )
 
 type OperatorConfig struct {
-	ProverPrivateKeys     []string       `json:"prover_private_keys"`
-	OperatorPrivateKey    string         `json:"operator_private_key"`
-	ProverRegistryAddress common.Address `json:"prover_registry_address"`
-	EthRPCUrl             string         `json:"eth_rpc_url"`
-	ChainId               big.Int        `json:"chain_id"`
-	GasLimit              uint64         `json:"gas_limit"`
-	TxReceiptTimeout      int64          `json:"tx_receipt_timeout"`
-	ExpiryInDays          int64          `json:"expiry_in_days"`
-	UseEncryptedKeys      bool           `json:"use_encrypted_keys"`
+	ProverPrivateKeys         []string       `json:"prover_private_keys"`
+	ChallengerPrivateKeys     []string       `json:"challenger_private_keys"`
+	OperatorPrivateKey        string         `json:"operator_private_key"`
+	ProverRegistryAddress     common.Address `json:"prover_registry_address"`
+	ChallengerRegistryAddress common.Address `json:"challenger_registry_address"`
+	EthRPCUrl                 string         `json:"eth_rpc_url"`
+	ChainId                   big.Int        `json:"chain_id"`
+	GasLimit                  uint64         `json:"gas_limit"`
+	TxReceiptTimeout          int64          `json:"tx_receipt_timeout"`
+	ExpiryInDays              int64          `json:"expiry_in_days"`
+	UseEncryptedKeys          bool           `json:"use_encrypted_keys"`
 }
 
 func GetConfigFromContext(cCtx *cli.Context) *OperatorConfig {
