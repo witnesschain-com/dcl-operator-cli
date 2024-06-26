@@ -4,14 +4,8 @@
     "<prover-private-key-name>",
     "<prover-private-key-name>"
   ],
-  "challenger_private_keys": [
-    "<challenger-private-key-name>",
-    "<challenger-private-key-name>",
-    "<challenger-private-key-name>"
-  ],
   "operator_private_key": "<operator-private-key-name>",
   "prover_registry_address": "0x9EA4eC41A4081D394373e902F1b1D9f1f3dD4440",
-  "challenger_registry_address": "0xbFEe5A2b64c453C0d69a8f73ED89d623473e986d",
   "eth_rpc_url": "<Mainnet RPC URL>",
   "chain_id": 1,
   "gas_limit": "<gas-limit>",

@@ -12,7 +12,6 @@ import (
 )
 
 func DeRegisterProverCmd() *cli.Command {
-	op_common.ConfigPathFlag.Value = dcl_common.DefaultOpConfig
 	var deregisterProverCmd = &cli.Command{
 		Name:  "deRegisterProver",
 		Usage: "De-register the prover",
@@ -20,6 +19,7 @@ func DeRegisterProverCmd() *cli.Command {
 			&op_common.ConfigPathFlag,
 		},
 		Action: func(cCtx *cli.Context) error {
+			cCtx.Set("config-file", dcl_common.DefaultOpProverConfig)
 			config := operator_config.GetConfigFromContext(cCtx)
 			DeRegisterProver(config)
 			return nil

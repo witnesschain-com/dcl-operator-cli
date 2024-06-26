@@ -12,7 +12,6 @@ import (
 )
 
 func DeRegisterChallengerCmd() *cli.Command {
-	op_common.ConfigPathFlag.Value = dcl_common.DefaultOpConfig
 	var deregisterChallengerCmd = &cli.Command{
 		Name:  "deRegisterChallenger",
 		Usage: "De-register the challenger",
@@ -20,6 +19,7 @@ func DeRegisterChallengerCmd() *cli.Command {
 			&op_common.ConfigPathFlag,
 		},
 		Action: func(cCtx *cli.Context) error {
+			cCtx.Set("config-file", dcl_common.DefaultOpChallengerConfig)
 			config := operator_config.GetConfigFromContext(cCtx)
 			DeRegisterChallenger(config)
 			return nil
