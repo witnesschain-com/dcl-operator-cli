@@ -163,6 +163,10 @@ github.com/wagslane/go-password-validator v0.3.0 h1:vfxOPzGHkz5S146HDpavl0cw1DSV
 github.com/wagslane/go-password-validator v0.3.0/go.mod h1:TI1XJ6T5fRdRnHqHt14pvy1tNVnrwe7m3/f1f2fDphQ=
 github.com/witnesschain-com/operator-cli v0.1.1-0.20240517152649-5cf07a911f04 h1:j2Nias0auSaCajVp+WdNGiaHx1cbsk7nzSrp9PPdvLA=
 github.com/witnesschain-com/operator-cli v0.1.1-0.20240517152649-5cf07a911f04/go.mod h1:R0ZrIBScXRa2KcuDYyBMBGx8qYEaE9cbytsBE4jnDTY=
+github.com/witnesschain-com/operator-cli v0.1.1-0.20240620133912-3518d3c5bff1 h1:T+/a+SUyTCH2AfjhR9cEXW4iGajo2lRecpLSC7PWzdU=
+github.com/witnesschain-com/operator-cli v0.1.1-0.20240620133912-3518d3c5bff1/go.mod h1:R0ZrIBScXRa2KcuDYyBMBGx8qYEaE9cbytsBE4jnDTY=
+github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240711034936-32f5215cd592 h1:Okk7dQ60D7fbEhkc7kSpm/xvq91PbGSdXzMROhLG1Hg=
+github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240711034936-32f5215cd592/go.mod h1:R0ZrIBScXRa2KcuDYyBMBGx8qYEaE9cbytsBE4jnDTY=
 github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 h1:+qGGcbkzsfDQNPPe9UDgpxAWQrhbbBXOYJFQDq/dtJw=
 github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913/go.mod h1:4aEEwZQutDLsQv2Deui4iYQ6DWTxR14g6m8Wv88+Xqk=
 golang.org/x/crypto v0.22.0 h1:g1v0xeRhjcugydODzvb3mEM9SQ0HGp9s/nh3COQ/C30=

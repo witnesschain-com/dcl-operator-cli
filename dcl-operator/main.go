@@ -31,6 +31,8 @@ func main() {
 		op_common.KeysCmd(),
 		operator_commands.RegisterProverCmd(),
 		operator_commands.DeRegisterProverCmd(),
+		operator_commands.RegisterChallengerCmd(),
+		operator_commands.DeRegisterChallengerCmd(),
 	}
 
 	if err := app.Run(os.Args); err != nil {

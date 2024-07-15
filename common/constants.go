@@ -1,5 +1,6 @@
-package dcl_common
+package common
 
 const (
-	DefaultOpConfig string = "config/operator-config.json"
+	DefaultOpProverConfig     string = "operator-prover-config.json"
+	DefaultOpChallengerConfig string = "operator-challenger-config.json"
 )

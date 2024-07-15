@@ -12,7 +12,6 @@ import (
 )
 
 func RegisterProverCmd() *cli.Command {
-	op_common.ConfigPathFlag.Value = dcl_common.DefaultOpConfig
 	var registerProverCmd = &cli.Command{
 		Name:  "registerProver",
 		Usage: "Register a prover",
@@ -20,6 +19,7 @@ func RegisterProverCmd() *cli.Command {
 			&op_common.ConfigPathFlag,
 		},
 		Action: func(cCtx *cli.Context) error {
+			cCtx.Set("config-file", dcl_common.DefaultOpProverConfig)
 			config := operator_config.GetConfigFromContext(cCtx)
 			RegisterProver(config)
 			return nil
