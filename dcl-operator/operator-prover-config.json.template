@@ -1,16 +1,15 @@
 {
   "prover_private_keys": [
-    "<prover-private-key-name>",
-    "<prover-private-key-name>",
-    "<prover-private-key-name>"
+    "<alternate-path(optional) + prover-private-key-name>",
+    "<alternate-path(optional) + prover-private-key-name>",
+    "<alternate-path(optional) + prover-private-key-name>"
   ],
-  "operator_private_key": "<operator-private-key-name>",
+  "operator_private_key": "<alternate-path(optional) + operator-private-key-name>",
   "prover_registry_address": "0x9EA4eC41A4081D394373e902F1b1D9f1f3dD4440",
   "eth_rpc_url": "<Mainnet RPC URL>",
   "chain_id": 1,
   "gas_limit": "<gas-limit>",
   "tx_receipt_timeout": "<timeout_in_seconds>",
   "expiry": "<expiry_in_days>",
-  "use_encrypted_keys": false,
-  "keys_directory_path": "<optional: path_of_the_keys_directory>"
+  "use_encrypted_keys": false
 }

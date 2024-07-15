@@ -5,7 +5,7 @@ go 1.22.2
 require (
 	github.com/ethereum/go-ethereum v1.14.3
 	github.com/urfave/cli/v2 v2.27.2
-	github.com/witnesschain-com/operator-cli v0.1.1-0.20240620133912-3518d3c5bff1
+	github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240711034936-32f5215cd592
 )
 
 require (

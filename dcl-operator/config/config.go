@@ -41,11 +41,11 @@ func GetConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 
 	SetDefaultConfigValues(&config)
 
-	if len(config.KeysDirectoryPath) > 0 {
-		op_common.SetKeysPath(config.KeysDirectoryPath)
-	}
-
 	if config.UseEncryptedKeys {
+		// get the path from the first key, as others should be same
+		// will not work with different paths
+		op_common.RetryMounting()
+		op_common.ProcessConfigKeyPath(config.OperatorPrivateKey)
 		op_common.UseEncryptedKeys()
 	}
 
