@@ -1,4 +1,4 @@
-package dcl_common
+package common
 
 import (
 	"errors"
