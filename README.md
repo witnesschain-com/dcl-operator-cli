@@ -130,7 +130,8 @@ Enter password to mount: **********
    -------------------------------------------------------
 ```
 
-Going forward, the CLI will ask for the mount password to decrpyt and use these keys. This is how the config will look like when using encrypted keys
+Going forward, the CLI will ask for the mount password to decrpyt and use these keys. This is how the config will look like when using encrypted keys.
+Note : The addresses shown in the examples below are testnet addresses
 
 ```
 {
@@ -140,8 +141,8 @@ Going forward, the CLI will ask for the mount password to decrpyt and use these 
   ],
   "operator_private_key": "op1",
   "prover_registry_address": "0x91013d3CecE055603D8b1EE7DCB1f670f480fe24",
-  "eth_rpc_url": "<Mainnet RPC URL>",
-  "chain_id": 1,
+  "eth_rpc_url": "https://blue-orangutan-rpc.eu-north-2.gateway.fm",
+  "chain_id": 1237146866,
   "gas_limit": 5000000,
   "tx_receipt_timeout": 600,
   "expiry_in_days": 1,
@@ -158,9 +159,9 @@ Similarly for the challenger
    "ch2"
   ],
   "operator_private_key": "op1",
-  "prover_registry_address": "0xeFFE8c100029F71924554aEd382f1919ecA6b203",
-  "eth_rpc_url": "<Mainnet RPC URL>",
-  "chain_id": 1,
+  "challenger_registry_address": "0xeFFE8c100029F71924554aEd382f1919ecA6b203",
+  "eth_rpc_url": "https://blue-orangutan-rpc.eu-north-2.gateway.fm",
+  "chain_id": 1237146866,
   "gas_limit": 5000000,
   "tx_receipt_timeout": 600,
   "expiry_in_days": 1,
