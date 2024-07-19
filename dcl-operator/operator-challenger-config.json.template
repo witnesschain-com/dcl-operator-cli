@@ -5,9 +5,9 @@
     "<alternate-path(optional) + challenger-private-key-name>"
   ],
   "operator_private_key": "<alternate-path(optional) + operator-private-key-name>",
-  "challenger_registry_address": "0xbFEe5A2b64c453C0d69a8f73ED89d623473e986d",
-  "eth_rpc_url": "<Mainnet RPC URL>",
-  "chain_id": 1,
+  "challenger_registry_address": "0xeFFE8c100029F71924554aEd382f1919ecA6b203",
+  "eth_rpc_url": "https://blue-orangutan-rpc.eu-north-2.gateway.fm",
+  "chain_id": 237146866,
   "gas_limit": "<gas-limit>",
   "tx_receipt_timeout": "<timeout_in_seconds>",
   "expiry": "<expiry_in_days>",
