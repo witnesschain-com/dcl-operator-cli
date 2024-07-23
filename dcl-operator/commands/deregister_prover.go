@@ -19,7 +19,9 @@ func DeRegisterProverCmd() *cli.Command {
 			&op_common.ConfigPathFlag,
 		},
 		Action: func(cCtx *cli.Context) error {
-			cCtx.Set("config-file", dcl_common.DefaultOpProverConfig)
+			if cCtx.Value("config-file") == "" {
+				cCtx.Set("config-file", dcl_common.DefaultOpProverConfig)
+			}
 			config := operator_config.GetConfigFromContext(cCtx)
 			DeRegisterProver(config)
 			return nil

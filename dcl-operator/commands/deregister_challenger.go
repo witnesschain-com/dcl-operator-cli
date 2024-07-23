@@ -19,7 +19,9 @@ func DeRegisterChallengerCmd() *cli.Command {
 			&op_common.ConfigPathFlag,
 		},
 		Action: func(cCtx *cli.Context) error {
-			cCtx.Set("config-file", dcl_common.DefaultOpChallengerConfig)
+			if cCtx.Value("config-file") == "" {
+				cCtx.Set("config-file", dcl_common.DefaultOpChallengerConfig)
+			}
 			config := operator_config.GetConfigFromContext(cCtx)
 			DeRegisterChallenger(config)
 			return nil
