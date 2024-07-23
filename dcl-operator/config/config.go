@@ -27,8 +27,8 @@ type OperatorConfig struct {
 	OperatorEncryptedKey     string           `json:"operator_encrypted_key"`
 	EthRPCUrl                string           `json:"eth_rpc_url"`
 	GasLimit                 uint64           `json:"gas_limit"`
-	TxReceiptTimeout         int64            `json:"tx_receipt_timeout"`
-	ExpiryInDays             int64            `json:"expiry_in_days"`
+	TxReceiptTimeout         uint64           `json:"tx_receipt_timeout"`
+	ExpiryInDays             uint64           `json:"expiry_in_days"`
 	Endpoint                 string           `json:"external_signer_endpoint"`
 	KeyType                  string           `json:"encrypted_key_type"`
 	ProverPrivateKeys        []*ecdsa.PrivateKey
@@ -97,6 +97,8 @@ func GetChallengerConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 		panic("operatorAddress is zero")
 	}
 
+	SetDefaultValues(&config)
+
 	return &config
 }
 
@@ -160,5 +162,25 @@ func GetProverConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 		panic("operatorAddress is zero")
 	}
 
+	SetDefaultValues(&config)
+
 	return &config
+}
+
+func SetDefaultValues(config *OperatorConfig) {
+	if config.GasLimit == 0 {
+		config.GasLimit = op_common.DefaultGasLimit
+	}
+
+	if config.TxReceiptTimeout == 0 {
+		config.TxReceiptTimeout = op_common.DefaultTxReceiptTimeout
+	}
+
+	if config.ExpiryInDays == 0 {
+		config.ExpiryInDays = op_common.DefaultExpiration
+	}
+
+	if config.KeyType == "" {
+		config.KeyType = op_common.KeyTypeW3SecretKey
+	}
 }

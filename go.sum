@@ -183,6 +183,8 @@ github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240711034936-32f5215cd59
 github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240711034936-32f5215cd592/go.mod h1:R0ZrIBScXRa2KcuDYyBMBGx8qYEaE9cbytsBE4jnDTY=
 github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240722083417-6f29d2a53867 h1:8HHMyZf3B3bU35TmtH9fu8RBFbtMqsJcsxVX8GSpSSo=
 github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240722083417-6f29d2a53867/go.mod h1:Wi2hsJdup7X3WFdAgbiP1CVpf2pdsl8VS60VRyM0Jg4=
+github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240723071250-2cab3e3c9c4e h1:2HmHWZlHpDSNx3tKffSnThwvXJw32G4dYoqFJRKCFUY=
+github.com/witnesschain-com/operator-cli v0.3.0-rc2.0.20240723071250-2cab3e3c9c4e/go.mod h1:Wi2hsJdup7X3WFdAgbiP1CVpf2pdsl8VS60VRyM0Jg4=
 github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 h1:+qGGcbkzsfDQNPPe9UDgpxAWQrhbbBXOYJFQDq/dtJw=
 github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913/go.mod h1:4aEEwZQutDLsQv2Deui4iYQ6DWTxR14g6m8Wv88+Xqk=
 golang.org/x/crypto v0.22.0 h1:g1v0xeRhjcugydODzvb3mEM9SQ0HGp9s/nh3COQ/C30=

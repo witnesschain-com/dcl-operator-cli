@@ -57,9 +57,9 @@ Default file: operator-challenger-config.json.template (reference file)
 |operator_encrypted_key | Encrypted private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
 |encrypted_key_type | The type of encryption used for the keys (valid values = w3secretkeys/gocryptfs) |
 |eth_rpc_url | The RPC URL where you want to perform the transactions |
-|gas_limit | The gas limit you want to set while sending the transactions |
-|tx_receipt_timeout| Timeout in seconds for waiting of tx receipts |
-|expiry| Expiry in days after which the challenger signature becomes invalid |
+|gas_limit | The gas limit you want to set while sending the transactions (Default value = 1000000). No need to add in the config unless you want to overwrite the default values.  |
+|tx_receipt_timeout| Timeout in seconds for waiting of tx receipts (Default value = 300). No need to add in the config unless you want to overwrite the default values. |
+|expiry| Expiry in days after which the operator signature becomes invalid (Default value = 1). No need to add in the config unless you want to overwrite the default values. |
 
 ### For the prover
 
@@ -74,9 +74,9 @@ Default file: operator-prover-config.json.template (reference file)
 |operator_encrypted_key | Encrypted private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
 |encrypted_key_type | The type of encryption used for the keys (valid values = w3secretkeys/gocryptfs) |
 |eth_rpc_url | The RPC URL where you want to perform the transactions |
-|gas_limit | The gas limit you want to set while sending the transactions |
-|tx_receipt_timeout| Timeout in seconds for waiting of tx receipts |
-|expiry| Expiry in days after which the challenger signature becomes invalid |
+|gas_limit | The gas limit you want to set while sending the transactions (Default value = 1000000). No need to add in the config unless you want to overwrite the default values.  |
+|tx_receipt_timeout| Timeout in seconds for waiting of tx receipts (Default value = 300). No need to add in the config unless you want to overwrite the default values. |
+|expiry| Expiry in days after which the operator signature becomes invalid (Default value = 1). No need to add in the config unless you want to overwrite the default values. |
 
 ## How to use the encrypted keys
 
@@ -157,7 +157,7 @@ $ dcl-operator keys list
    -------------------------------------------------------
 ```
 
-Going forward, the CLI will ask for password to decrpyt and use these keys. This is how the config will look like when using encrypted keys and the keys are present in the default location i.e. `~/.witnesschain/cli/.encrypted_keys`
+Going forward, the CLI will ask for password to decrpyt and use these keys. This is how the config will look like when using encrypted keys and the keys are present in the default location i.e. `~/.witnesschain/cli/.gocryptfs/.encrypted_keys`
 
 > NOTE -
 > If you want to use encrypted keys, use the fields `challenger_encrypted_keys`/`prover_encrypted_keys` and use `challenger_private_keys`/`prover_private_keys` when you want to use raw private keys. You need to either give the full path(if you want an alternate path to be used) or the name(for the default path) of the encrypted keys as show in the example below
@@ -196,10 +196,7 @@ The below example shows how you can use encrypted keys using `w3secretkeys` type
   ],
   "operator_encrypted_key": "~/alternate/path/to/your/keys/op1",
   "encrypted_key_type": "w3secretkeys",
-  "eth_rpc_url": "<Mainnet RPC URL>",
-  "gas_limit": 1000000,
-  "tx_receipt_timeout": 300,
-  "expiry": 1
+  "eth_rpc_url": "<Mainnet RPC URL>"
 }
 ```
 Similarly for the challenger
@@ -212,9 +209,6 @@ Similarly for the challenger
   "operator_encrypted_key": "~/alternate/path/to/your/keys/op1",
   "encrypted_key_type": "w3secretkeys",
   "eth_rpc_url": "<Mainnet RPC URL>",
-  "gas_limit": 1000000,
-  "tx_receipt_timeout": 300,
-  "expiry": 1
 }
 ```
 
@@ -226,10 +220,7 @@ The below example shows how you can use the key names which will be taken from a
   ],
   "operator_encrypted_key": "~/alternate/path/to/your/keys/.encrypted_keys/op1",
   "encrypted_key_type": "gocryptfs",
-  "eth_rpc_url": "<Mainnet RPC URL>",
-  "gas_limit": 1000000,
-  "tx_receipt_timeout": 300,
-  "expiry": 1
+  "eth_rpc_url": "<Mainnet RPC URL>"
 }
 ```
 Similarly for the challenger
@@ -241,10 +232,7 @@ Similarly for the challenger
   ],
   "operator_encrypted_key": "~/alternate/path/to/your/keys/.encrypted_keys/op1",
   "encrypted_key_type": "gocryptfs",
-  "eth_rpc_url": "<Mainnet RPC URL>",
-  "gas_limit": 1000000,
-  "tx_receipt_timeout": 300,
-  "expiry": 1
+  "eth_rpc_url": "<Mainnet RPC URL>"
 }
 ```
 
