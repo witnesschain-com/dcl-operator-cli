@@ -7,7 +7,7 @@
   "operator_private_key": "<alternate-path(optional) + operator-private-key-name>",
   "prover_registry_address": "0x9EA4eC41A4081D394373e902F1b1D9f1f3dD4440",
   "eth_rpc_url": "https://blue-orangutan-rpc.eu-north-2.gateway.fm",
-  "chain_id": 237146866,
+  "chain_id": 1237146866,
   "gas_limit": <gas-limit>,
   "tx_receipt_timeout": <timeout_in_seconds>,
   "expiry": <expiry_in_days>,
