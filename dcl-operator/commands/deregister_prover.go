@@ -3,9 +3,11 @@ package operator_commands
 import (
 	"fmt"
 
+	"github.com/ethereum/go-ethereum/ethclient"
 	dcl_common "github.com/witnesschain-com/dcl-operator-cli/common"
 	"github.com/witnesschain-com/dcl-operator-cli/common/bindings/ProverRegistry"
 	operator_config "github.com/witnesschain-com/dcl-operator-cli/dcl-operator/config"
+	"github.com/witnesschain-com/diligencewatchtower-client/keystore"
 	op_common "github.com/witnesschain-com/operator-cli/common"
 
 	"github.com/urfave/cli/v2"
@@ -19,8 +21,10 @@ func DeRegisterProverCmd() *cli.Command {
 			&op_common.ConfigPathFlag,
 		},
 		Action: func(cCtx *cli.Context) error {
-			cCtx.Set("config-file", dcl_common.DefaultOpProverConfig)
-			config := operator_config.GetConfigFromContext(cCtx)
+			if cCtx.Value("config-file") == "" {
+				cCtx.Set("config-file", dcl_common.DefaultOpProverConfig)
+			}
+			config := operator_config.GetProverConfigFromContext(cCtx)
 			DeRegisterProver(config)
 			return nil
 		},
@@ -29,31 +33,37 @@ func DeRegisterProverCmd() *cli.Command {
 }
 
 func DeRegisterProver(config *operator_config.OperatorConfig) {
-	client := op_common.ConnectToUrl(config.EthRPCUrl)
 
-	proverRegistry, err := ProverRegistry.NewProverRegistry(config.ProverRegistryAddress, client)
+	var client *ethclient.Client
+	client, config.ChainID = op_common.ConnectToUrl(config.EthRPCUrl)
+
+	proverRegistry, err := ProverRegistry.NewProverRegistry(dcl_common.NetworkConfig[config.ChainID.String()].ProverRegistryAddress, client)
 	op_common.CheckError(err, "Instantiating ProverRegistry contract failed")
 
-	operatorPrivateKey, operatorAddress := op_common.GetECDSAPrivateAndPublicKey(op_common.GetPrivateKey(config.OperatorPrivateKey))
+	vc := &keystore.VaultConfig{Address: config.OperatorAddress, ChainID: config.ChainID, PrivateKey: config.OperatorPrivateKey, Endpoint: config.Endpoint}
+	operatorVault, err := keystore.SetupVault(vc)
+	if err != nil {
+		op_common.CheckError(err, "unable to setup vault")
+	}
 
-	if !dcl_common.IsOperatorWhitelisted(operatorAddress, proverRegistry) {
-		fmt.Printf("Operator %s is not whitelisted\n", operatorAddress.Hex())
+	if !dcl_common.IsOperatorWhitelisted(config.OperatorAddress, proverRegistry) {
+		fmt.Printf("Operator %s is not allow listed\n", config.OperatorAddress.Hex())
 		return
 	}
 
-	deRegTransactOpts := op_common.PrepareTransactionOptions(client, config.ChainId, config.GasLimit, operatorPrivateKey)
+	transactOpts := operatorVault.NewTransactOpts(config.ChainID)
 
-	for _, proverPkName := range config.ProverPrivateKeys {
-		_, proverAddress := op_common.GetECDSAPrivateAndPublicKey(op_common.GetPrivateKey(proverPkName))
+	for _, proverAddress := range config.ProverAddresses {
 
-		if !dcl_common.IsProverRegistered(proverAddress, operatorAddress, proverRegistry) {
+		fmt.Println("proverAddress: " + proverAddress.Hex())
+
+		if !dcl_common.IsProverRegistered(proverAddress, config.OperatorAddress, proverRegistry) {
 			fmt.Printf("prover %s is not registered\n", proverAddress.Hex())
 			continue
 		}
 
-		deRegTransactOpts.Nonce = op_common.GetLatestNonce(client, operatorPrivateKey)
-		deRegTx, err := proverRegistry.DeRegisterProver(deRegTransactOpts, proverAddress)
-		op_common.CheckError(err, "Deregister failed")
+		deRegTx, err := proverRegistry.DeRegisterProver(transactOpts, proverAddress)
+		op_common.CheckError(err, "Registering prover-operator failed")
 		fmt.Printf("Tx sent: %s\n", deRegTx.Hash().Hex())
 		op_common.WaitForTransactionReceipt(client, deRegTx, config.TxReceiptTimeout)
 	}

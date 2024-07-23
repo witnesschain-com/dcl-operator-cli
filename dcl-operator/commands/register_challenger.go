@@ -1,11 +1,14 @@
 package operator_commands
 
 import (
+	"crypto/ecdsa"
 	"fmt"
 
+	"github.com/ethereum/go-ethereum/ethclient"
 	dcl_common "github.com/witnesschain-com/dcl-operator-cli/common"
 	"github.com/witnesschain-com/dcl-operator-cli/common/bindings/ChallengerRegistry"
 	operator_config "github.com/witnesschain-com/dcl-operator-cli/dcl-operator/config"
+	"github.com/witnesschain-com/diligencewatchtower-client/keystore"
 	op_common "github.com/witnesschain-com/operator-cli/common"
 
 	"github.com/urfave/cli/v2"
@@ -19,8 +22,10 @@ func RegisterChallengerCmd() *cli.Command {
 			&op_common.ConfigPathFlag,
 		},
 		Action: func(cCtx *cli.Context) error {
-			cCtx.Set("config-file", dcl_common.DefaultOpChallengerConfig)
-			config := operator_config.GetConfigFromContext(cCtx)
+			if cCtx.Value("config-file") == "" {
+				cCtx.Set("config-file", dcl_common.DefaultOpChallengerConfig)
+			}
+			config := operator_config.GetChallengerConfigFromContext(cCtx)
 			RegisterChallenger(config)
 			return nil
 		},
@@ -29,23 +34,39 @@ func RegisterChallengerCmd() *cli.Command {
 }
 
 func RegisterChallenger(config *operator_config.OperatorConfig) {
-	client := op_common.ConnectToUrl(config.EthRPCUrl)
+	var client *ethclient.Client
+	client, config.ChainID = op_common.ConnectToUrl(config.EthRPCUrl)
 
-	challengerRegistry, err := ChallengerRegistry.NewChallengerRegistry(config.ChallengerRegistryAddress, client)
+	challengerRegistry, err := ChallengerRegistry.NewChallengerRegistry(dcl_common.NetworkConfig[config.ChainID.String()].ChallengerRegistryAddress, client)
 	op_common.CheckError(err, "Instantiating ChallengerRegistry contract failed")
 
-	operatorPrivateKey, operatorAddress := op_common.GetECDSAPrivateAndPublicKey(op_common.GetPrivateKey(config.OperatorPrivateKey))
+	vc := &keystore.VaultConfig{Address: config.OperatorAddress, ChainID: config.ChainID, PrivateKey: config.OperatorPrivateKey, Endpoint: config.Endpoint}
+	operatorVault, err := keystore.SetupVault(vc)
+	if err != nil {
+		op_common.CheckError(err, "unable to setup vault")
+	}
 
-	if !dcl_common.IsOperatorWhitelisted(operatorAddress, challengerRegistry) {
-		fmt.Printf("Operator %s is not allow listed\n", operatorAddress.Hex())
+	if !dcl_common.IsOperatorWhitelisted(config.OperatorAddress, challengerRegistry) {
+		fmt.Printf("Operator %s is not allow listed\n", config.OperatorAddress.Hex())
 		return
 	}
 
-	regTransactOpts := op_common.PrepareTransactionOptions(client, config.ChainId, config.GasLimit, operatorPrivateKey)
+	transactOpts := operatorVault.NewTransactOpts(config.ChainID)
+
 	expiry := op_common.CalculateExpiry(client, config.ExpiryInDays)
 
-	for _, challengerPkName := range config.ChallengerPrivateKeys {
-		challengerPrivateKey, challengerAddress := op_common.GetECDSAPrivateAndPublicKey(op_common.GetPrivateKey(challengerPkName))
+	for i, challengerAddress := range config.ChallengerAddresses {
+
+		fmt.Println("challengerAddress: " + challengerAddress.Hex())
+
+		var challengerPrivateKey *ecdsa.PrivateKey
+		if len(config.ChallengerPrivateKeys) != 0 {
+			challengerPrivateKey = config.ChallengerPrivateKeys[i]
+		}
+
+		vc := &keystore.VaultConfig{Address: challengerAddress, ChainID: config.ChainID, PrivateKey: challengerPrivateKey, Endpoint: config.Endpoint}
+		challengerVault, err := keystore.SetupVault(vc)
+		op_common.CheckError(err, "unable to setup challenger vault")
 
 		if dcl_common.IsValidChallenger(challengerAddress, challengerRegistry) {
 			fmt.Printf("challenger %s is already registered\n", challengerAddress.Hex())
@@ -54,11 +75,9 @@ func RegisterChallenger(config *operator_config.OperatorConfig) {
 
 		salt := op_common.GenerateSalt()
 
-		challengerSignature := GetChallengerSignature(client, challengerRegistry, challengerAddress, challengerPrivateKey, operatorAddress, salt, expiry)
+		challengerSignature := GetChallengerSignature(client, challengerRegistry, challengerAddress, challengerVault, config.OperatorAddress, salt, expiry)
 
-		regTransactOpts.Nonce = op_common.GetLatestNonce(client, operatorPrivateKey)
-
-		regTx, err := challengerRegistry.RegisterChallenger(regTransactOpts, challengerAddress, salt, expiry, challengerSignature)
+		regTx, err := challengerRegistry.RegisterChallenger(transactOpts, challengerAddress, salt, expiry, challengerSignature)
 		op_common.CheckError(err, "Registering challenger failed")
 		fmt.Printf("Tx sent: %s\n", regTx.Hash().Hex())
 		op_common.WaitForTransactionReceipt(client, regTx, config.TxReceiptTimeout)
