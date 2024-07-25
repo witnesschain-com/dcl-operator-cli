@@ -1,15 +1,14 @@
 {
   "challenger_private_keys": [
-    "<alternate-path(optional) + challenger-private-key-name>",
-    "<alternate-path(optional) + challenger-private-key-name>",
-    "<alternate-path(optional) + challenger-private-key-name>"
+    "<challenger-private-key>",
+    "<challenger-private-key>",
+    "<challenger-private-key>"
   ],
-  "operator_private_key": "<alternate-path(optional) + operator-private-key-name>",
-  "challenger_registry_address": "0xbFEe5A2b64c453C0d69a8f73ED89d623473e986d",
-  "eth_rpc_url": "<Mainnet RPC URL>",
-  "chain_id": 1,
-  "gas_limit": "<gas-limit>",
-  "tx_receipt_timeout": "<timeout_in_seconds>",
-  "expiry": "<expiry_in_days>",
-  "use_encrypted_keys": false
+  "challenger_encrypted_keys": [
+    "<path of encrypted keys. e.g. ~/.witnesschain.com/.encrypted_keys/challenger1.key",
+    "<path of encrypted keys. e.g. ~/.witnesschain.com/.encrypted_keys/challenger2.key"
+  ],
+  "operator_private_key": "<operator-private-key>",
+  "operator_encrypted_key": "path of operator encrypted Key. e.g. ~/.witnesschain.com/.encrypted_keys/operator.key",
+  "eth_rpc_url": "<Mainnet RPC URL>"
 }
