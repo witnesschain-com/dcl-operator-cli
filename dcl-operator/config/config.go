@@ -49,6 +49,8 @@ func GetChallengerConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 	err = json.Unmarshal(data, &config)
 	op_common.CheckError(err, "Error unmarshaling json data")
 
+	SetDefaultValues(&config)
+
 	if len(config.ChallengerEncryptedKeys) != 0 {
 		// get the path from the first key, as others should be same
 		// will not work with different paths
@@ -97,8 +99,6 @@ func GetChallengerConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 		panic("operatorAddress is zero")
 	}
 
-	SetDefaultValues(&config)
-
 	return &config
 }
 
@@ -113,6 +113,8 @@ func GetProverConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 	var config OperatorConfig = OperatorConfig{ExpiryInDays: 1, TxReceiptTimeout: 300, GasLimit: 300000}
 	err = json.Unmarshal(data, &config)
 	op_common.CheckError(err, "Error unmarshaling json data")
+
+	SetDefaultValues(&config)
 
 	if len(config.ProverEncryptedKeys) != 0 {
 		// get the path from the first key, as others should be same
@@ -161,8 +163,6 @@ func GetProverConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 	if config.OperatorAddress.Cmp(common.Address{0}) == 0 {
 		panic("operatorAddress is zero")
 	}
-
-	SetDefaultValues(&config)
 
 	return &config
 }

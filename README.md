@@ -7,21 +7,8 @@ You can refer to the [How to use the config files](#how-to-use-the_config-files)
 ## Installation
 You can get the dcl-operator cli by building from source
 
-### Pre-requisite
-
-gocryptfs should be installed on the machine you will use the CLI tool on. The installation and running of gocryptfs is easier and smoother on Unbuntu/Debian systems. So, to use the CLI, those would be the ideal systems
-
-1. **Building from source**
-   - clone the repository 
-    ```
-    git clone https://github.com/witnesschain-com/dcl-operator-cli.git
-    ```
-
-   - Build the binaries
-    ```
-    cd operator-cli/dcl-operator-cli
-    ./build
-    ```
+Installation instructions for building from source is available in 
+[docs/install.md](docs/install.md).
 
 
 ## How to use
@@ -55,8 +42,8 @@ Default file: operator-challenger-config.json.template (reference file)
 |challenger_encrypted_keys | Encrypted private keys of the challengers (use this field if you want to enter encrypted key names) |
 |operator_private_key | Private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
 |operator_encrypted_key | Encrypted private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
-|encrypted_key_type | The type of encryption used for the keys (valid values = w3secretkeys/gocryptfs) |
 |eth_rpc_url | The RPC URL where you want to perform the transactions |
+|encrypted_key_type | The type of encryption used for the keys (valid values = w3secretkeys/gocryptfs) (Default value = w3secretkeys). No need to add in the config unless you want to overwrite the default values.   |
 |gas_limit | The gas limit you want to set while sending the transactions (Default value = 1000000). No need to add in the config unless you want to overwrite the default values.  |
 |tx_receipt_timeout| Timeout in seconds for waiting of tx receipts (Default value = 300). No need to add in the config unless you want to overwrite the default values. |
 |expiry| Expiry in days after which the operator signature becomes invalid (Default value = 1). No need to add in the config unless you want to overwrite the default values. |
@@ -72,8 +59,8 @@ Default file: operator-prover-config.json.template (reference file)
 |prover_encrypted_keys | Encrypted private keys of the provers (use this field if you want to enter encrypted key names) |
 |operator_private_key | Private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
 |operator_encrypted_key | Encrypted private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
-|encrypted_key_type | The type of encryption used for the keys (valid values = w3secretkeys/gocryptfs) |
 |eth_rpc_url | The RPC URL where you want to perform the transactions |
+|encrypted_key_type | The type of encryption used for the keys (valid values = w3secretkeys/gocryptfs) (Default value = w3secretkeys). No need to add in the config unless you want to overwrite the default values.   |
 |gas_limit | The gas limit you want to set while sending the transactions (Default value = 1000000). No need to add in the config unless you want to overwrite the default values.  |
 |tx_receipt_timeout| Timeout in seconds for waiting of tx receipts (Default value = 300). No need to add in the config unless you want to overwrite the default values. |
 |expiry| Expiry in days after which the operator signature becomes invalid (Default value = 1). No need to add in the config unless you want to overwrite the default values. |
@@ -171,7 +158,6 @@ The below example shows how you can use the key names which will be taken from t
   ],
   "operator_private_key": "<raw-operator-private-key>",
   "eth_rpc_url": "<Mainnet RPC URL>",
-  "expiry": 1
 }
 ```
 
@@ -184,7 +170,6 @@ Similarly for the challenger
   ],
   "operator_private_key": "<raw-operator-private-key>",
   "eth_rpc_url": "<Mainnet RPC URL>",
-  "expiry": 1
 }
 ```
 
