@@ -31,7 +31,7 @@ var (
 
 // ProverRegistryMetaData contains all meta data concerning the ProverRegistry contract.
 var ProverRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"type\":\"constructor\",\"inputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"UPGRADE_INTERFACE_VERSION\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\",\"internalType\":\"string\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"calculateProverRegistrationDigestHash\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"salt\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"expiry\",\"type\":\"uint256\",\"internalType\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"chainAdmin\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"deListOperators\",\"inputs\":[{\"name\":\"operators\",\"type\":\"address[]\",\"internalType\":\"address[]\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"dePINOperatorProversStatus\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"dePINOperatorsStatus\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINOperatorStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"dePINProverSaltUsed\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"dePINProversStatus\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"deRegisterProver\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"domainSeperator\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getOperatorStatus\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINOperatorStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getProverStatus\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"initialize\",\"inputs\":[{\"name\":\"_chainAdmin\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"isRegisteredProver\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"isWhiteListed\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"paused\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"proxiableUUID\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"registerProver\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"salt\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"expiry\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"proverSignature\",\"type\":\"bytes\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"upgradeToAndCall\",\"inputs\":[{\"name\":\"newImplementation\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"data\",\"type\":\"bytes\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"whitelistOperators\",\"inputs\":[{\"name\":\"operators\",\"type\":\"address[]\",\"internalType\":\"address[]\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"DePINProverDeregistered\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DePINProverParticipationKeyRegistered\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"participationKey\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DePINProverRegistered\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"proverStatus\",\"type\":\"uint8\",\"indexed\":false,\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Initialized\",\"inputs\":[{\"name\":\"version\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Paused\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":false,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Unpaused\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":false,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Upgraded\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"error\",\"name\":\"AddressEmptyCode\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"ERC1967InvalidImplementation\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"ERC1967NonPayable\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"EnforcedPause\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"ExpectedPause\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"FailedInnerCall\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"InvalidInitialization\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"NotInitializing\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"OwnableInvalidOwner\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"OwnableUnauthorizedAccount\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"UUPSUnauthorizedCallContext\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"UUPSUnsupportedProxiableUUID\",\"inputs\":[{\"name\":\"slot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]}]",
+	ABI: "[{\"type\":\"constructor\",\"inputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"UPGRADE_INTERFACE_VERSION\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\",\"internalType\":\"string\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"calculateProverRegistrationDigestHash\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"salt\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"expiry\",\"type\":\"uint256\",\"internalType\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"chainAdmin\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"dePINOperatorProversStatus\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"dePINOperatorsStatus\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINOperatorStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"dePINProverSaltUsed\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"dePINProversStatus\",\"inputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"deRegisterProver\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"domainSeperator\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getOperatorStatus\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINOperatorStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getProverStatus\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\",\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"initialize\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"isRegisteredProver\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"pause\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"paused\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bool\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"proxiableUUID\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"registerProver\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"salt\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"expiry\",\"type\":\"uint256\",\"internalType\":\"uint256\"},{\"name\":\"proverSignature\",\"type\":\"bytes\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setChainAdmin\",\"inputs\":[{\"name\":\"_chainAdmin\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"unpause\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"upgradeToAndCall\",\"inputs\":[{\"name\":\"newImplementation\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"data\",\"type\":\"bytes\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"payable\"},{\"type\":\"event\",\"name\":\"ChainAdminInitialized\",\"inputs\":[{\"name\":\"_chainAdmin\",\"type\":\"address\",\"indexed\":false,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DePINProverDeregistered\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DePINProverParticipationKeyRegistered\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"participationKey\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DePINProverRegistered\",\"inputs\":[{\"name\":\"prover\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"proverStatus\",\"type\":\"uint8\",\"indexed\":false,\"internalType\":\"enumIProverRegistry.DePINProverStatus\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Initialized\",\"inputs\":[{\"name\":\"version\",\"type\":\"uint64\",\"indexed\":false,\"internalType\":\"uint64\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Paused\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":false,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Unpaused\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":false,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Upgraded\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false},{\"type\":\"error\",\"name\":\"AddressEmptyCode\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"ERC1967InvalidImplementation\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"ERC1967NonPayable\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"EnforcedPause\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"ExpectedPause\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"FailedInnerCall\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"InvalidInitialization\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"NotInitializing\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"OwnableInvalidOwner\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"OwnableUnauthorizedAccount\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"internalType\":\"address\"}]},{\"type\":\"error\",\"name\":\"UUPSUnauthorizedCallContext\",\"inputs\":[]},{\"type\":\"error\",\"name\":\"UUPSUnsupportedProxiableUUID\",\"inputs\":[{\"name\":\"slot\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"}]}]",
 }
 
 // ProverRegistryABI is the input ABI used to generate the binding from.
@@ -521,37 +521,6 @@ func (_ProverRegistry *ProverRegistryCallerSession) IsRegisteredProver(prover co
 	return _ProverRegistry.Contract.IsRegisteredProver(&_ProverRegistry.CallOpts, prover, operator)
 }
 
-// IsWhiteListed is a free data retrieval call binding the contract method 0x6f9170f6.
-//
-// Solidity: function isWhiteListed(address operator) view returns(bool)
-func (_ProverRegistry *ProverRegistryCaller) IsWhiteListed(opts *bind.CallOpts, operator common.Address) (bool, error) {
-	var out []interface{}
-	err := _ProverRegistry.contract.Call(opts, &out, "isWhiteListed", operator)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// IsWhiteListed is a free data retrieval call binding the contract method 0x6f9170f6.
-//
-// Solidity: function isWhiteListed(address operator) view returns(bool)
-func (_ProverRegistry *ProverRegistrySession) IsWhiteListed(operator common.Address) (bool, error) {
-	return _ProverRegistry.Contract.IsWhiteListed(&_ProverRegistry.CallOpts, operator)
-}
-
-// IsWhiteListed is a free data retrieval call binding the contract method 0x6f9170f6.
-//
-// Solidity: function isWhiteListed(address operator) view returns(bool)
-func (_ProverRegistry *ProverRegistryCallerSession) IsWhiteListed(operator common.Address) (bool, error) {
-	return _ProverRegistry.Contract.IsWhiteListed(&_ProverRegistry.CallOpts, operator)
-}
-
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
 // Solidity: function owner() view returns(address)
@@ -645,27 +614,6 @@ func (_ProverRegistry *ProverRegistryCallerSession) ProxiableUUID() ([32]byte, e
 	return _ProverRegistry.Contract.ProxiableUUID(&_ProverRegistry.CallOpts)
 }
 
-// DeListOperators is a paid mutator transaction binding the contract method 0x3395b550.
-//
-// Solidity: function deListOperators(address[] operators) returns()
-func (_ProverRegistry *ProverRegistryTransactor) DeListOperators(opts *bind.TransactOpts, operators []common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.contract.Transact(opts, "deListOperators", operators)
-}
-
-// DeListOperators is a paid mutator transaction binding the contract method 0x3395b550.
-//
-// Solidity: function deListOperators(address[] operators) returns()
-func (_ProverRegistry *ProverRegistrySession) DeListOperators(operators []common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.Contract.DeListOperators(&_ProverRegistry.TransactOpts, operators)
-}
-
-// DeListOperators is a paid mutator transaction binding the contract method 0x3395b550.
-//
-// Solidity: function deListOperators(address[] operators) returns()
-func (_ProverRegistry *ProverRegistryTransactorSession) DeListOperators(operators []common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.Contract.DeListOperators(&_ProverRegistry.TransactOpts, operators)
-}
-
 // DeRegisterProver is a paid mutator transaction binding the contract method 0xd00ce3d6.
 //
 // Solidity: function deRegisterProver(address prover) returns()
@@ -687,25 +635,46 @@ func (_ProverRegistry *ProverRegistryTransactorSession) DeRegisterProver(prover 
 	return _ProverRegistry.Contract.DeRegisterProver(&_ProverRegistry.TransactOpts, prover)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0xc4d66de8.
+// Initialize is a paid mutator transaction binding the contract method 0x8129fc1c.
 //
-// Solidity: function initialize(address _chainAdmin) returns()
-func (_ProverRegistry *ProverRegistryTransactor) Initialize(opts *bind.TransactOpts, _chainAdmin common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.contract.Transact(opts, "initialize", _chainAdmin)
+// Solidity: function initialize() returns()
+func (_ProverRegistry *ProverRegistryTransactor) Initialize(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ProverRegistry.contract.Transact(opts, "initialize")
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0xc4d66de8.
+// Initialize is a paid mutator transaction binding the contract method 0x8129fc1c.
 //
-// Solidity: function initialize(address _chainAdmin) returns()
-func (_ProverRegistry *ProverRegistrySession) Initialize(_chainAdmin common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.Contract.Initialize(&_ProverRegistry.TransactOpts, _chainAdmin)
+// Solidity: function initialize() returns()
+func (_ProverRegistry *ProverRegistrySession) Initialize() (*types.Transaction, error) {
+	return _ProverRegistry.Contract.Initialize(&_ProverRegistry.TransactOpts)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0xc4d66de8.
+// Initialize is a paid mutator transaction binding the contract method 0x8129fc1c.
 //
-// Solidity: function initialize(address _chainAdmin) returns()
-func (_ProverRegistry *ProverRegistryTransactorSession) Initialize(_chainAdmin common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.Contract.Initialize(&_ProverRegistry.TransactOpts, _chainAdmin)
+// Solidity: function initialize() returns()
+func (_ProverRegistry *ProverRegistryTransactorSession) Initialize() (*types.Transaction, error) {
+	return _ProverRegistry.Contract.Initialize(&_ProverRegistry.TransactOpts)
+}
+
+// Pause is a paid mutator transaction binding the contract method 0x8456cb59.
+//
+// Solidity: function pause() returns()
+func (_ProverRegistry *ProverRegistryTransactor) Pause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ProverRegistry.contract.Transact(opts, "pause")
+}
+
+// Pause is a paid mutator transaction binding the contract method 0x8456cb59.
+//
+// Solidity: function pause() returns()
+func (_ProverRegistry *ProverRegistrySession) Pause() (*types.Transaction, error) {
+	return _ProverRegistry.Contract.Pause(&_ProverRegistry.TransactOpts)
+}
+
+// Pause is a paid mutator transaction binding the contract method 0x8456cb59.
+//
+// Solidity: function pause() returns()
+func (_ProverRegistry *ProverRegistryTransactorSession) Pause() (*types.Transaction, error) {
+	return _ProverRegistry.Contract.Pause(&_ProverRegistry.TransactOpts)
 }
 
 // RegisterProver is a paid mutator transaction binding the contract method 0xb969f136.
@@ -750,6 +719,27 @@ func (_ProverRegistry *ProverRegistryTransactorSession) RenounceOwnership() (*ty
 	return _ProverRegistry.Contract.RenounceOwnership(&_ProverRegistry.TransactOpts)
 }
 
+// SetChainAdmin is a paid mutator transaction binding the contract method 0xf9c182d8.
+//
+// Solidity: function setChainAdmin(address _chainAdmin) returns()
+func (_ProverRegistry *ProverRegistryTransactor) SetChainAdmin(opts *bind.TransactOpts, _chainAdmin common.Address) (*types.Transaction, error) {
+	return _ProverRegistry.contract.Transact(opts, "setChainAdmin", _chainAdmin)
+}
+
+// SetChainAdmin is a paid mutator transaction binding the contract method 0xf9c182d8.
+//
+// Solidity: function setChainAdmin(address _chainAdmin) returns()
+func (_ProverRegistry *ProverRegistrySession) SetChainAdmin(_chainAdmin common.Address) (*types.Transaction, error) {
+	return _ProverRegistry.Contract.SetChainAdmin(&_ProverRegistry.TransactOpts, _chainAdmin)
+}
+
+// SetChainAdmin is a paid mutator transaction binding the contract method 0xf9c182d8.
+//
+// Solidity: function setChainAdmin(address _chainAdmin) returns()
+func (_ProverRegistry *ProverRegistryTransactorSession) SetChainAdmin(_chainAdmin common.Address) (*types.Transaction, error) {
+	return _ProverRegistry.Contract.SetChainAdmin(&_ProverRegistry.TransactOpts, _chainAdmin)
+}
+
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
@@ -769,6 +759,27 @@ func (_ProverRegistry *ProverRegistrySession) TransferOwnership(newOwner common.
 // Solidity: function transferOwnership(address newOwner) returns()
 func (_ProverRegistry *ProverRegistryTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
 	return _ProverRegistry.Contract.TransferOwnership(&_ProverRegistry.TransactOpts, newOwner)
+}
+
+// Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
+//
+// Solidity: function unpause() returns()
+func (_ProverRegistry *ProverRegistryTransactor) Unpause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ProverRegistry.contract.Transact(opts, "unpause")
+}
+
+// Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
+//
+// Solidity: function unpause() returns()
+func (_ProverRegistry *ProverRegistrySession) Unpause() (*types.Transaction, error) {
+	return _ProverRegistry.Contract.Unpause(&_ProverRegistry.TransactOpts)
+}
+
+// Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
+//
+// Solidity: function unpause() returns()
+func (_ProverRegistry *ProverRegistryTransactorSession) Unpause() (*types.Transaction, error) {
+	return _ProverRegistry.Contract.Unpause(&_ProverRegistry.TransactOpts)
 }
 
 // UpgradeToAndCall is a paid mutator transaction binding the contract method 0x4f1ef286.
@@ -792,25 +803,138 @@ func (_ProverRegistry *ProverRegistryTransactorSession) UpgradeToAndCall(newImpl
 	return _ProverRegistry.Contract.UpgradeToAndCall(&_ProverRegistry.TransactOpts, newImplementation, data)
 }
 
-// WhitelistOperators is a paid mutator transaction binding the contract method 0xee7f08ef.
-//
-// Solidity: function whitelistOperators(address[] operators) returns()
-func (_ProverRegistry *ProverRegistryTransactor) WhitelistOperators(opts *bind.TransactOpts, operators []common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.contract.Transact(opts, "whitelistOperators", operators)
+// ProverRegistryChainAdminInitializedIterator is returned from FilterChainAdminInitialized and is used to iterate over the raw logs and unpacked data for ChainAdminInitialized events raised by the ProverRegistry contract.
+type ProverRegistryChainAdminInitializedIterator struct {
+	Event *ProverRegistryChainAdminInitialized // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
 }
 
-// WhitelistOperators is a paid mutator transaction binding the contract method 0xee7f08ef.
-//
-// Solidity: function whitelistOperators(address[] operators) returns()
-func (_ProverRegistry *ProverRegistrySession) WhitelistOperators(operators []common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.Contract.WhitelistOperators(&_ProverRegistry.TransactOpts, operators)
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *ProverRegistryChainAdminInitializedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(ProverRegistryChainAdminInitialized)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(ProverRegistryChainAdminInitialized)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
 }
 
-// WhitelistOperators is a paid mutator transaction binding the contract method 0xee7f08ef.
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *ProverRegistryChainAdminInitializedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *ProverRegistryChainAdminInitializedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// ProverRegistryChainAdminInitialized represents a ChainAdminInitialized event raised by the ProverRegistry contract.
+type ProverRegistryChainAdminInitialized struct {
+	ChainAdmin common.Address
+	Raw        types.Log // Blockchain specific contextual infos
+}
+
+// FilterChainAdminInitialized is a free log retrieval operation binding the contract event 0xd0dfe49bc354505424888f6141a5274c54ee2a9d6adac7d5187916e1c0aea940.
 //
-// Solidity: function whitelistOperators(address[] operators) returns()
-func (_ProverRegistry *ProverRegistryTransactorSession) WhitelistOperators(operators []common.Address) (*types.Transaction, error) {
-	return _ProverRegistry.Contract.WhitelistOperators(&_ProverRegistry.TransactOpts, operators)
+// Solidity: event ChainAdminInitialized(address _chainAdmin)
+func (_ProverRegistry *ProverRegistryFilterer) FilterChainAdminInitialized(opts *bind.FilterOpts) (*ProverRegistryChainAdminInitializedIterator, error) {
+
+	logs, sub, err := _ProverRegistry.contract.FilterLogs(opts, "ChainAdminInitialized")
+	if err != nil {
+		return nil, err
+	}
+	return &ProverRegistryChainAdminInitializedIterator{contract: _ProverRegistry.contract, event: "ChainAdminInitialized", logs: logs, sub: sub}, nil
+}
+
+// WatchChainAdminInitialized is a free log subscription operation binding the contract event 0xd0dfe49bc354505424888f6141a5274c54ee2a9d6adac7d5187916e1c0aea940.
+//
+// Solidity: event ChainAdminInitialized(address _chainAdmin)
+func (_ProverRegistry *ProverRegistryFilterer) WatchChainAdminInitialized(opts *bind.WatchOpts, sink chan<- *ProverRegistryChainAdminInitialized) (event.Subscription, error) {
+
+	logs, sub, err := _ProverRegistry.contract.WatchLogs(opts, "ChainAdminInitialized")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(ProverRegistryChainAdminInitialized)
+				if err := _ProverRegistry.contract.UnpackLog(event, "ChainAdminInitialized", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseChainAdminInitialized is a log parse operation binding the contract event 0xd0dfe49bc354505424888f6141a5274c54ee2a9d6adac7d5187916e1c0aea940.
+//
+// Solidity: event ChainAdminInitialized(address _chainAdmin)
+func (_ProverRegistry *ProverRegistryFilterer) ParseChainAdminInitialized(log types.Log) (*ProverRegistryChainAdminInitialized, error) {
+	event := new(ProverRegistryChainAdminInitialized)
+	if err := _ProverRegistry.contract.UnpackLog(event, "ChainAdminInitialized", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
 }
 
 // ProverRegistryDePINProverDeregisteredIterator is returned from FilterDePINProverDeregistered and is used to iterate over the raw logs and unpacked data for DePINProverDeregistered events raised by the ProverRegistry contract.
