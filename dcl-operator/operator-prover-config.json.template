@@ -10,5 +10,5 @@
   ],
   "operator_private_key": "<operator-private-key>",
   "operator_encrypted_key": "path of operator encrypted Key. e.g. ~/.witnesschain.com/.encrypted_keys/operator.key",
-  "eth_rpc_url": "<Mainnet RPC URL>",
+  "eth_rpc_url": "https://blue-orangutan-rpc.eu-north-2.gateway.fm",
 }
