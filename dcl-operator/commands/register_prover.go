@@ -46,10 +46,6 @@ func RegisterProver(config *operator_config.OperatorConfig) {
 		op_common.CheckError(err, "unable to setup vault")
 	}
 
-	if !dcl_common.IsOperatorWhitelisted(config.OperatorAddress, proverRegistry) {
-		fmt.Printf("Operator %s is not allow listed\n", config.OperatorAddress.Hex())
-		return
-	}
 
 	transactOpts := operatorVault.NewTransactOpts(config.ChainID)
 
