@@ -81,7 +81,7 @@ func RegisterChallenger(config *operator_config.OperatorConfig) {
 
 		regTx, err := challengerRegistry.RegisterChallenger(transactOpts, challengerAddress, salt, expiry, challengerSignature)
 		op_common.CheckError(err, "Registering challenger failed")
-		fmt.Printf("Tx sent: %s\n", regTx.Hash().Hex())
+		fmt.Printf("Tx sent: %s/tx/%s\n", dcl_common.NetworkConfig[config.ChainID.String()].BlockExplorer ,regTx.Hash().Hex())
 		op_common.WaitForTransactionReceipt(client, regTx, config.TxReceiptTimeout)
 	}
 }
