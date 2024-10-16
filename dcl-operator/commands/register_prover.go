@@ -3,6 +3,7 @@ package operator_commands
 import (
 	"crypto/ecdsa"
 	"fmt"
+	"math/big"
 
 	"github.com/ethereum/go-ethereum/ethclient"
 	dcl_common "github.com/witnesschain-com/dcl-operator-cli/common"
@@ -48,6 +49,7 @@ func RegisterProver(config *operator_config.OperatorConfig) {
 
 
 	transactOpts := operatorVault.NewTransactOpts(config.ChainID)
+	transactOpts.GasPrice = big.NewInt(0)
 
 	expiry := op_common.CalculateExpiry(client, config.ExpiryInDays)
 
