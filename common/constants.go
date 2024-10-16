@@ -19,8 +19,8 @@ type ChainConfig struct {
 }
 
 var BlueOrangutan = ChainConfig{
-	ProverRegistryAddress:     common.HexToAddress("0x91013d3CecE055603D8b1EE7DCB1f670f480fe24"),
 	ChallengerRegistryAddress: common.HexToAddress("0xeFFE8c100029F71924554aEd382f1919ecA6b203"),
+	ProverRegistryAddress:     common.HexToAddress("0x91013d3CecE055603D8b1EE7DCB1f670f480fe24"),
 	ChainID:                   *big.NewInt(1237146866),
 	BlockExplorer:             "https://blue-orangutan-blockscout.eu-north-2.gateway.fm",
 }
