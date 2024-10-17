@@ -49,7 +49,9 @@ func RegisterProver(config *operator_config.OperatorConfig) {
 
 
 	transactOpts := operatorVault.NewTransactOpts(config.ChainID)
-	transactOpts.GasPrice = big.NewInt(0)
+	if (dcl_common.NetworkConfig[config.ChainID.String()].GasPrice == -1) {
+		transactOpts.GasPrice = big.NewInt(0)
+	}
 
 	expiry := op_common.CalculateExpiry(client, config.ExpiryInDays)
 

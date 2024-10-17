@@ -16,6 +16,7 @@ type ChainConfig struct {
 	ChallengerRegistryAddress common.Address
 	ChainID                   big.Int
 	BlockExplorer             string
+	GasPrice                  int
 }
 
 var BlueOrangutan = ChainConfig{
@@ -23,6 +24,7 @@ var BlueOrangutan = ChainConfig{
 	ProverRegistryAddress:     common.HexToAddress("0x91013d3CecE055603D8b1EE7DCB1f670f480fe24"),
 	ChainID:                   *big.NewInt(1237146866),
 	BlockExplorer:             "https://blue-orangutan-blockscout.eu-north-2.gateway.fm",
+	GasPrice: -1,
 }
 
 var Holesky = ChainConfig{
@@ -30,6 +32,7 @@ var Holesky = ChainConfig{
 	ChallengerRegistryAddress: common.HexToAddress(""),
 	ChainID:                   *big.NewInt(17000),
 	BlockExplorer:             "https://holesky.etherscan.io",
+	GasPrice: 0,
 }
 
 var WitnesschainMainnet = ChainConfig{
@@ -37,6 +40,7 @@ var WitnesschainMainnet = ChainConfig{
 	ChallengerRegistryAddress: common.HexToAddress(""),
 	BlockExplorer:             "https://explorer.witnesschain.com",
 	ChainID:                   *big.NewInt(1702448187),
+	GasPrice: -1,
 }
 
 var EthMainnet = ChainConfig{
@@ -44,6 +48,7 @@ var EthMainnet = ChainConfig{
 	ChallengerRegistryAddress: common.HexToAddress(""),
 	ChainID:                   *big.NewInt(1),
 	BlockExplorer:             "https://etherscan.io",
+	GasPrice: 0,
 }
 
 var NetworkConfig = map[string]ChainConfig{
