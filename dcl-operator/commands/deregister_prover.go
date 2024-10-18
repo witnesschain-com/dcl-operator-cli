@@ -2,6 +2,7 @@ package operator_commands
 
 import (
 	"fmt"
+	"math/big"
 
 	"github.com/ethereum/go-ethereum/ethclient"
 	dcl_common "github.com/witnesschain-com/dcl-operator-cli/common"
@@ -46,12 +47,11 @@ func DeRegisterProver(config *operator_config.OperatorConfig) {
 		op_common.CheckError(err, "unable to setup vault")
 	}
 
-	if !dcl_common.IsOperatorWhitelisted(config.OperatorAddress, proverRegistry) {
-		fmt.Printf("Operator %s is not allow listed\n", config.OperatorAddress.Hex())
-		return
-	}
-
 	transactOpts := operatorVault.NewTransactOpts(config.ChainID)
+	
+	if (dcl_common.NetworkConfig[config.ChainID.String()].GasPrice == -1) {
+		transactOpts.GasPrice = big.NewInt(0)
+	}
 
 	for _, proverAddress := range config.ProverAddresses {
 
@@ -64,7 +64,7 @@ func DeRegisterProver(config *operator_config.OperatorConfig) {
 
 		deRegTx, err := proverRegistry.DeRegisterProver(transactOpts, proverAddress)
 		op_common.CheckError(err, "Registering prover-operator failed")
-		fmt.Printf("Tx sent: %s\n", deRegTx.Hash().Hex())
+		fmt.Printf("Tx sent: %s/tx/%s\n", dcl_common.NetworkConfig[config.ChainID.String()].BlockExplorer, deRegTx.Hash().Hex())
 		op_common.WaitForTransactionReceipt(client, deRegTx, config.TxReceiptTimeout)
 	}
 }
