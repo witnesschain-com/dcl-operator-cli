@@ -1,8 +1,6 @@
 package common
 
 import (
-	"errors"
-
 	"github.com/witnesschain-com/dcl-operator-cli/common/bindings/ChallengerRegistry"
 	"github.com/witnesschain-com/dcl-operator-cli/common/bindings/ProverRegistry"
 	op_common "github.com/witnesschain-com/operator-cli/common"
@@ -23,18 +21,3 @@ func IsValidChallenger(challenger common.Address, challengerRegistry *Challenger
 	return valid
 }
 
-func IsOperatorWhitelisted(operator common.Address, registryInterface interface{}) bool {
-	var active bool
-	var err error
-	switch registry := registryInterface.(type) {
-	case *ProverRegistry.ProverRegistry:
-		active, err = registry.IsWhiteListed(&bind.CallOpts{}, operator)
-	case *ChallengerRegistry.ChallengerRegistry:
-		active, err = registry.IsAllowlisted(&bind.CallOpts{}, operator)
-	default:
-		err = errors.New("invalid registry type")
-	}
-
-	op_common.CheckError(err, "Error checking if operator is whitelisted")
-	return active
-}
