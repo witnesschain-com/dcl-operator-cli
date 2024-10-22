@@ -12,7 +12,7 @@ func RegisterWatchtowerCmd() *cli.Command {
 	flags := append([]cli.Flag{}, CommonFlags...)
 	var registerChallengerCmd = &cli.Command{
 		Name:  "registerWatchtower",
-		Usage: "Register a challenger",
+		Usage: "Register a watchtower as challenger and prover",
 		Flags: flags,
 		Action: func(cCtx *cli.Context) error {
 			if !(cCtx.Bool("testnet") || cCtx.Bool("mainnet")){
