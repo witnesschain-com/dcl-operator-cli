@@ -9,6 +9,7 @@ import (
 	"os"
 
 	op_common "github.com/witnesschain-com/operator-cli/common"
+	dcl_common "github.com/witnesschain-com/dcl-operator-cli/common"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -167,6 +168,44 @@ func GetProverConfigFromContext(cCtx *cli.Context) *OperatorConfig {
 	return &config
 }
 
+func GetConfigFromContext(cCtx *cli.Context) *OperatorConfig{
+	var config OperatorConfig = OperatorConfig{ExpiryInDays: 1, TxReceiptTimeout: 300, GasLimit: 300000, KeyType: "plaintext"}
+	if cCtx.Bool("testnet") {
+		config.EthRPCUrl = dcl_common.BlueOrangutan.RPC
+	}
+	if cCtx.Bool("mainnet") {
+		config.EthRPCUrl = dcl_common.WitnesschainMainnet.RPC
+	}
+	if config.EthRPCUrl == ""{
+		log.Fatalf("either --mainnet or --testnet should be passed as flag in the commandline.")
+	}
+
+	if cCtx.String("watchtower-private-key") == ""{
+		log.Fatalf("--watchtower-private-key must be set")
+	}
+
+
+	// challenger private keys
+	config.ChallengerPrivateKeysHex = []string{cCtx.String("watchtower-private-key")}
+	watchtowerPrivateKey, err := crypto.HexToECDSA(config.ChallengerPrivateKeysHex[0])
+	op_common.CheckError(err, "unable to convert operator privateKey")
+	config.ChallengerPrivateKeys = append(config.ChallengerPrivateKeys, watchtowerPrivateKey)
+	config.ChallengerAddresses = append(config.ChallengerAddresses, crypto.PubkeyToAddress(watchtowerPrivateKey.PublicKey))
+
+	// prover private keys
+	config.ProverPrivateKeys = append(config.ProverPrivateKeys, watchtowerPrivateKey)
+	config.ProverAddresses = append(config.ProverAddresses, crypto.PubkeyToAddress(watchtowerPrivateKey.PublicKey))
+
+	// operator private keys
+	config.OperatorPrivateKeyHex = cCtx.String("watchtower-private-key")
+	operatorPrivateKey, err := crypto.HexToECDSA(config.OperatorPrivateKeyHex)
+	op_common.CheckError(err, "unable to convert operator privateKey")
+	config.OperatorPrivateKey = operatorPrivateKey
+	config.OperatorAddress = crypto.PubkeyToAddress(watchtowerPrivateKey.PublicKey)
+
+	return &config
+}
+
 func SetDefaultValues(config *OperatorConfig) {
 	if config.GasLimit == 0 {
 		config.GasLimit = op_common.DefaultGasLimit
@@ -184,3 +223,5 @@ func SetDefaultValues(config *OperatorConfig) {
 		config.KeyType = op_common.KeyTypeW3SecretKey
 	}
 }
+
+

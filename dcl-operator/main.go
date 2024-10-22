@@ -33,6 +33,7 @@ func main() {
 		operator_commands.DeRegisterProverCmd(),
 		operator_commands.RegisterChallengerCmd(),
 		operator_commands.DeRegisterChallengerCmd(),
+		operator_commands.RegisterWatchtowerCmd(),
 	}
 
 	if err := app.Run(os.Args); err != nil {
