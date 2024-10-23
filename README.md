@@ -27,6 +27,7 @@ Note: In case you haven't exported the path for dcl-operator executable, you can
 |deRegisterProver | Used to deregister prover |
 |registerChallenger | Used to register challenger |
 |deRegisterChallenger| Used to deregister challenger |
+|registerWatchtower| Used to register challengers and provers |
 
 ## How to use the config files
 The structure and details in the config file might differ based on the functionality you are using. Enter the following details in the config file. Changing the key names in the json file will lead to misbehavior
@@ -43,7 +44,6 @@ Default file: operator-challenger-config.json.template (reference file)
 |operator_private_key | Private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
 |operator_encrypted_key | Encrypted private key of the operator(on which the actions will be performed) (use this field if you want to enter raw key)|
 |eth_rpc_url | The RPC URL where you want to perform the transactions |
-|encrypted_key_type | The type of encryption used for the keys (valid values = w3secretkeys/gocryptfs) (Default value = w3secretkeys). No need to add in the config unless you want to overwrite the default values.   |
 |gas_limit | The gas limit you want to set while sending the transactions (Default value = 1000000). No need to add in the config unless you want to overwrite the default values.  |
 |tx_receipt_timeout| Timeout in seconds for waiting of tx receipts (Default value = 300). No need to add in the config unless you want to overwrite the default values. |
 |expiry| Expiry in days after which the operator signature becomes invalid (Default value = 1). No need to add in the config unless you want to overwrite the default values. |
@@ -70,7 +70,6 @@ Default file: operator-prover-config.json.template (reference file)
 To store and use the keys in an encrypted format, use the `challenger_encrypted_keys`, `prover_encrypted_keys` and `operator_encrypted_key` fields in the configs. If they have same values entered into it, the CLI tool will use the keys stored in the encrypted format in the given key name.
 
 For `w3secretkeys`, the default path is `~/.witnesschain/cli/.w3secretkeys`. These are similar to EigenLayer ECDSA keys. Read more about [it](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation#create-and-list-keys)
-For `gocryptfs`, the default path is `~/.witnesschain/cli/.gocryptfs/.encrypted_keys`. Read more about [gocrytpfs encryption](https://github.com/rfjakob/gocryptfs)
 
 ### Sub-commands
 The `keys` command has 4 sub-commands. Let's look at them one by one -
@@ -82,18 +81,7 @@ The flags which can be used with the key commands are
 |--key-type | -t <value> | This flag is used to specify the keystore type (w3secretkeys/gocryptfs) |
 |--insecure | -i | This flag is used to bypass password strength validations |
 
-1. `init` - This command is used to initiate a new keystore file system and the type will be dependent on the key-type chosen. In case the type is `gocryptfs`, it will ask you to input a password which will be required whenever we need to access these file. It also performs password validations for strong passwords. To bypass this validation in the test environment, use `--insecure(-i)` flag.
-
-```
-init operation for key-type gocryptfs
-$ dcl-operator keys init -t gocryptfs -i
-
-Creating directory:  .gocryptfs
-Creating directory:  .gocryptfs/.encrypted_keys
-Creating directory:  .gocryptfs/.decrypted_keys
-Enter password to init: ****
-```
-After this command, two directories `.encrypted_keys` and `.decrypted_keys` are created inside a directory `.gocryptfs`. The names indicate their functions. Once this is done, we don't need to do it again, unless the `.encrypted_keys` or `.decrypted_keys` are tampered with. Once the command is successfully run, all other actions to create/import/export/delete `gocryptfs` type will need this password.
+1. `init` - This command is used to initiate a new keystore file system and the type will be dependent on the key-type chosen. 
 
 ```
 init operation for key-type gocryptfs
@@ -106,21 +94,6 @@ Contrary to `gocryptfs` type, `w3secretkeys` does not need a password during ini
 
 2. `create` - This command will create a new key. The value you pass with the `-k` flag will be the name of the key which will be referred in the future by the CLI. This name should be mentioned in the config file to extract the corresponding private key. When you run this command, it will ask for password to mount and then ask you to enter the private key
 ```
-$ dcl-operator keys create -k pro1 -t gocryptfs -i
-
-Enter password to mount: **********
-Created key: pro1
-```
-
-3. `import` - This command will import an existing key. The value you pass with the `-k` flag will be the name of the key which will be referred in the future by the CLI. This name should be mentioned in the config file to extract the corresponding private key. When you run this command, it will ask for password to mount and then ask you to enter the private key
-```
-$ dcl-operator keys import -k ch1 -t gocryptfs -i
-
-Enter password to mount: **********
-Enter private key: ****************************************************************
-Imported key: ch1
-```
-
 4. `list` - This command will list all the keys currently present (only by file name and created date)
 ```
 $ dcl-operator keys list -t w3secretkeys
@@ -131,23 +104,7 @@ $ dcl-operator keys list -t w3secretkeys
    -------------------------------------------------------
 ```
 
-5. `delete` - This command will delete a key. This command will need a flag --key-name(-k). The name given will be searched in the `.decrypted_keys` and deleted
-```
-$ ./dcl-operator keys delete -t w3secretkeys -k pro1
 
-Deleted key: pro1
-
-$ dcl-operator keys list
-   -------------------------------------------------------
-   Name                           Created
-   -------------------------------------------------------
-   -------------------------------------------------------
-```
-
-Going forward, the CLI will ask for password to decrpyt and use these keys. This is how the config will look like when using encrypted keys and the keys are present in the default location i.e. `~/.witnesschain/cli/.gocryptfs/.encrypted_keys`
-
-> NOTE -
-> If you want to use encrypted keys, use the fields `challenger_encrypted_keys`/`prover_encrypted_keys` and use `challenger_private_keys`/`prover_private_keys` when you want to use raw private keys. You need to either give the full path(if you want an alternate path to be used) or the name(for the default path) of the encrypted keys as show in the example below
 
 The below example shows how you can use the key names which will be taken from the default path
 
@@ -220,6 +177,3 @@ Similarly for the challenger
   "eth_rpc_url": "<Mainnet RPC URL>"
 }
 ```
-
-> NOTE -
-> If you are using an alternate path, all the keys present in the config have to be present in the same path. You cannot save the keys in different locations in the same config
