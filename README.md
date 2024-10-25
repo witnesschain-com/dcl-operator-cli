@@ -28,6 +28,10 @@ Run the following command to register the provers:-
 
 ```bash
 $ dcl-operator registerProver --config-file prover.json
+```
+
+You will get similar output on running above commands,
+```bash
 Using config file path : prover.json
 b961628baffcd195edb09542c8c1eb3b70ba98efa0824f1382edc624a0de1600
 Connection successful :  1237146866
@@ -45,7 +49,7 @@ For mainnet, please replace `eth_rpc_url` with
 
 ## Register Challengers
 
-Similarly,Create a `challenger.json` file to provide challengers and operator keys.
+Similarly, create a `challenger.json` file to provide challengers and operator keys.
 
 ```bash
 {
@@ -62,6 +66,11 @@ Run the following command to register the challengers:-
 
 ```bash
 $ dcl-operator registerChallenger --config-file challenger.json
+```
+
+You get output similar to the following:
+
+```bash
 Using config file path : challenger.json
 ae45757881825d0c9a890d0b819d88f9048a850eb3aed11def164655aece975e
 Connection successful :  1237146866
@@ -76,5 +85,5 @@ Transaction executed successfully, logs are ...
 For mainnet, please replace `eth_rpc_url` with 
 `https://rpc.witnesschain.com`.
 
-Web3secret keys are also supported, if you which to use web3secret 
+Web3secret keys are also supported, if you wish to use web3secret 
 format, please visit [docs/web3secret.md](docs/web3secret.md).
