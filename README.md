@@ -13,7 +13,7 @@ Create a `prover.json` file to provide provers and operator keys.
 
 Sample of prover config file:-
 
-```bash
+```json
 {
   "prover_private_keys": [
     "<raw-prover-private-key e.g. 01234567890abcdef01234567890abcdef01234567890abcdef01234567890abcdef01234567890abcdef>",
@@ -51,7 +51,7 @@ For mainnet, please replace `eth_rpc_url` with
 
 Similarly, create a `challenger.json` file to provide challengers and operator keys.
 
-```bash
+```json
 {
   "challenger_private_keys": [
     "<raw-challenger-private-key e.g. 01234567890abcdef01234567890abcdef01234567890abcdef01234567890abcdef01234567890abcdef>",
