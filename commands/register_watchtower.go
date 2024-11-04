@@ -3,7 +3,7 @@ package operator_commands
 import (
 	"log"
 
-	operator_config "github.com/witnesschain-com/dcl-operator-cli/dcl-operator/config"
+	operator_config "github.com/witnesschain-com/dcl-operator-cli/config"
 
 	"github.com/urfave/cli/v2"
 )

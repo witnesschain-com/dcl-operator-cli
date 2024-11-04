@@ -7,7 +7,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	dcl_common "github.com/witnesschain-com/dcl-operator-cli/common"
 	"github.com/witnesschain-com/dcl-operator-cli/common/bindings/ChallengerRegistry"
-	operator_config "github.com/witnesschain-com/dcl-operator-cli/dcl-operator/config"
+	operator_config "github.com/witnesschain-com/dcl-operator-cli/config"
 	"github.com/witnesschain-com/diligencewatchtower-client/keystore"
 	op_common "github.com/witnesschain-com/operator-cli/common"
 

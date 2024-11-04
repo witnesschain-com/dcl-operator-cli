@@ -1,0 +1,7 @@
+{
+  "challenger_private_keys": [
+    "ae45757881825d0c9a890d0b819d88f9048a850eb3aed11def164655aece9750"
+  ],
+  "operator_private_key": "ae45757881825d0c9a890d0b819d88f9048a850eb3aed11def164655aece9750",
+  "eth_rpc_url": "https://blue-orangutan-rpc.eu-north-2.gateway.fm/"
+}
