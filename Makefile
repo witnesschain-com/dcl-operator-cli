@@ -6,3 +6,6 @@ test: witnesschain-cli
 	./witnesschain-cli deRegisterProver --config-file templates/prover.json
 	./witnesschain-cli registerChallenger --config-file templates/challenger.json 
 	./witnesschain-cli deRegisterChallenger --config-file templates/challenger.json
+
+install: witnesschain-cli
+	cp witnesschain-cli ${HOME}/.local/bin
