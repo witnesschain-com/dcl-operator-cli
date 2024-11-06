@@ -1,3 +1,4 @@
 .encrypted_keys
 .decrypted_keys
-witnesschain-cli
+/witnesschain-cli
+/witness

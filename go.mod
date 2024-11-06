@@ -7,6 +7,7 @@ require (
 	github.com/urfave/cli/v2 v2.27.2
 	github.com/witnesschain-com/diligencewatchtower-client v1.1.0-rc3
 	github.com/witnesschain-com/operator-cli v0.3.0
+	golang.org/x/net v0.26.0
 )
 
 require (
