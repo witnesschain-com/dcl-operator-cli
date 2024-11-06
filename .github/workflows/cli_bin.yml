@@ -74,4 +74,6 @@ jobs:
           prerelease: ${{ github.event.inputs.release_type }}
           tag_name: ${{ env.CLI_VERSION }}
           body_path: RELEASE_NOTES.md
-          files: ${{ env.OPERATOR_CLI_DIR }}/${{env.CLI_NAME}}_${{matrix.os-label}} ${{ env.OPERATOR_CLI_DIR }}/${{env.WITNESS_NAME}}_${{matrix.os-label}}
+          files: |
+             ${{ env.OPERATOR_CLI_DIR }}/${{env.CLI_NAME}}_${{matrix.os-label}}
+             ${{ env.OPERATOR_CLI_DIR }}/${{env.WITNESS_NAME}}_${{matrix.os-label}}
