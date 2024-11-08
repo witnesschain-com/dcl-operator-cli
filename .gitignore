@@ -2,3 +2,4 @@
 .decrypted_keys
 /witnesschain-cli
 /witness
+*.swp
