@@ -4,6 +4,7 @@ go 1.22.2
 
 require (
 	github.com/ethereum/go-ethereum v1.14.5
+	github.com/fatih/color v1.16.0
 	github.com/urfave/cli/v2 v2.27.2
 	github.com/witnesschain-com/diligencewatchtower-client v1.1.0-rc3
 	github.com/witnesschain-com/operator-cli v0.3.0
@@ -29,6 +30,8 @@ require (
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/holiman/uint256 v1.2.4 // indirect
 	github.com/howeyc/gopass v0.0.0-20210920133722-c8aef6fb66ef // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mmcloughlin/addchain v0.4.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
