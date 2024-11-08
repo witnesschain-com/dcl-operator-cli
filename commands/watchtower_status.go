@@ -10,9 +10,11 @@ import (
 	"log"
 	"net/http"
 	"net/http/cookiejar"
+	"strings"
 	"time"
 
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/fatih/color"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/net/publicsuffix"
 )
@@ -118,12 +120,99 @@ func WatchtowerStatus(watchtowerAddress string) {
 		Jar: jar,
 	}
 
-	message := prelogin(client, privateKey)
-	login(client, privateKey, message)
-	challenger(client, "IPv4/" + watchtowerAddress)
-	challenger(client, "IPv6/" + watchtowerAddress)
+	challenger(client, "IPv4",  watchtowerAddress)
+	challenger(client, "IPv6",  watchtowerAddress)
+	watchtowerType := WatchtowerType(client, watchtowerAddress)
+	fmt.Printf("Watchtower Type:\t%s\n", watchtowerType)
+	fmt.Println(strings.Repeat("=", 80))
+}
+
+func challenger(client http.Client, protocol string, id string) bool{
+	challengerParameters := ChallengerParameters{
+		Id: protocol + "/" + id,
+	}
+
+	challengerParametersBytes, err := json.Marshal(challengerParameters)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	response, err := client.Post("https://api.witnesschain.com/proof/v1/pol/challenger", "application/json", bytes.NewBuffer(challengerParametersBytes))
+
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	challengerResponse := ChallengerResponse{}
+	json.Unmarshal(body, &challengerResponse)
+
+	if len(challengerResponse.Result.LastAlive) == 0 {
+		fmt.Printf("%s:\t\t\tNot found\n", protocol)
+		return false
+	}
+
+	last_alive, err := time.Parse(time.RFC3339, challengerResponse.Result.LastAlive)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	last_alive_duration := time.Now().Sub(last_alive).Round(time.Second)
 
 
+	if (last_alive_duration > time.Duration(time.Minute*5)){
+		color.Red("%s:\t\t\tInactive:\t\tlast seen %s ago", protocol, last_alive_duration)
+		return false
+	}
+
+	color.Green("%s:\t\t\tActive:\tlast seen %s ago", protocol, last_alive_duration)
+	return true
+}
+
+func WatchtowerType(client http.Client,watchtowerAddress string) string{
+	challengerParameters := ChallengerParameters{
+		Id: "IPv4/" + watchtowerAddress,
+	}
+
+	challengerParametersBytes, err := json.Marshal(challengerParameters)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	response, err := client.Post("https://api.witnesschain.com/proof/v1/pol/challenger", "application/json", bytes.NewBuffer(challengerParametersBytes))
+
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	challengerResponse := ChallengerResponse{}
+	json.Unmarshal(body, &challengerResponse)
+
+	if len(challengerResponse.Result.LastAlive) != 0 {
+		return "Challenger"
+	}
+
+	proverParameters := ChallengerParameters{
+		Id: "IPv4/" + watchtowerAddress,
+	}
+
+	proverParametersBytes, err := json.Marshal(proverParameters)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	response, err = client.Post("https://api.witnesschain.com/proof/v1/pol/prover", "application/json", bytes.NewBuffer(proverParametersBytes))
+
+	body, err = io.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	proverRespone := ProverResponse{}
+	json.Unmarshal(body, &proverRespone)
+	if len(proverRespone.Result.LastAlive) != 0 {
+		return "Prover"
+	}
+
+	return "Unable to determine watchtower status"
 
 }
 
@@ -178,6 +267,7 @@ func prelogin(client http.Client, privateKey *ecdsa.PrivateKey) string {
 	}
 	return result.Result.Message
 }
+
 
 func login(client http.Client, privateKey *ecdsa.PrivateKey, message string) bool{
 	signature := signMessage(privateKey, message)
