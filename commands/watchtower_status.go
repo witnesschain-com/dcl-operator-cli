@@ -79,6 +79,15 @@ type ChallengerResult struct {
 	LastAlive string `json:"last_alive"`
 }
 
+type ProverResponse struct {
+	Result ProverResult `json:"result"`
+}
+
+type ProverResult struct {
+	Id string `json:"id"`
+	LastAlive string `json:"last_alive"`
+}
+
 func WatchtowerStatusCmd() *cli.Command {
 	return &cli.Command{
 		Name:  "watchtowerStatus",
@@ -104,13 +113,11 @@ func WatchtowerStatusCmd() *cli.Command {
 	}
 }
 
-
 func WatchtowerStatus(watchtowerAddress string) {
+	fmt.Println(strings.Repeat("=", 80))
+	fmt.Printf("Watchtower:\t\t%s\n", watchtowerAddress)
+	fmt.Println(strings.Repeat("=", 80))
 	
-	privateKey, err := crypto.HexToECDSA("ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80")
-	if err != nil {
-		log.Fatal(err)
-	}
 	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
 	if err != nil {
 			log.Fatal(err)
@@ -298,37 +305,6 @@ func login(client http.Client, privateKey *ecdsa.PrivateKey, message string) boo
 	return loginResponse.Result.Success
 }
 
-func challenger(client http.Client, id string) {
-	challengerParameters := ChallengerParameters{
-		Id: id,
-	}
-
-	challengerParametersBytes, err := json.Marshal(challengerParameters)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	response, err := client.Post("https://api.witnesschain.com/proof/v1/pol/challenger", "application/json", bytes.NewBuffer(challengerParametersBytes))
-
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	challengerResponse := ChallengerResponse{}
-	json.Unmarshal(body, &challengerResponse)
-
-	if len(challengerResponse.Result.LastAlive) == 0 {
-		fmt.Print("Watchtower: ", id, " has not login into witnesschain\n")
-		return
-	}
-
-	last_alive, err := time.Parse(time.RFC3339, challengerResponse.Result.LastAlive)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Print("watchtower: ", id, " last alive: ", time.Now().Sub(last_alive).Round(1000000000), " ago\n")
-}
 
 func signMessage(privateKey *ecdsa.PrivateKey, message string) (string) {
 
