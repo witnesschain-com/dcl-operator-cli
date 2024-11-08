@@ -16,4 +16,5 @@ install: build
 
 watchtowerStatus:
 	go run cmd/witness/main.go  watchtowerStatus --watchtower-address 0x5549d62f67c2d8092602b499ac913030ecac50f5
+	go run cmd/witness/main.go  watchtowerStatus --watchtower-address 0x18dfdee484d4e1006e011c430755686f60386ab1
 
