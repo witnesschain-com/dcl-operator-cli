@@ -42,8 +42,8 @@ var Holesky = ChainConfig{
 }
 
 var WitnesschainMainnet = ChainConfig{
-	ProverRegistryAddress:     common.HexToAddress(""),
-	ChallengerRegistryAddress: common.HexToAddress(""),
+	ProverRegistryAddress:     common.HexToAddress("0xCdb30BE21A44fB111A48661ECc755B34a41C4e82"),
+	ChallengerRegistryAddress: common.HexToAddress("0x49220De1c883D9358e3cCe0aB42304460216Dc2C"),
 	BlockExplorer:             "https://explorer.witnesschain.com",
 	RPC:                       "https://rpc.witnesschain.com",
 	ChainID:                   *big.NewInt(1702448187),
