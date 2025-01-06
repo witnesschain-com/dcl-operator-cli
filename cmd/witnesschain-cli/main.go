@@ -34,6 +34,7 @@ func main() {
 		operator_commands.RegisterChallengerCmd(),
 		operator_commands.DeRegisterChallengerCmd(),
 		operator_commands.RegisterWatchtowerCmd(),
+		operator_commands.DeRegisterWatchtowerCmd(),
 	}
 
 	if err := app.Run(os.Args); err != nil {
