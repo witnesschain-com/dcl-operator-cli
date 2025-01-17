@@ -6,5 +6,5 @@
   ],
  
   "operator_private_key": "<operator-private-key>",
-  "eth_rpc_url": "https://rpc.witnesschain.com",
+  "eth_rpc_url": "https://rpc.witnesschain.com"
 }
