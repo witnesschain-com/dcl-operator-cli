@@ -1,14 +1,10 @@
 {
   "prover_private_keys": [
-    "<prover-private-key>",
-    "<prover-private-key>",
-    "<prover-private-key>"
+    "<watchtower-private-key-1>",
+    "<watchtower-private-key-2>",
+    "<watchtower-private-key-3>"
   ],
-  "prover_encrypted_keys": [
-    "<path of encrypted keys. e.g. ~/.witnesschain.com/.encrypted_keys/prover1.key",
-    "<path of encrypted keys. e.g. ~/.witnesschain.com/.encrypted_keys/prover2.key"
-  ],
+ 
   "operator_private_key": "<operator-private-key>",
-  "operator_encrypted_key": "path of operator encrypted Key. e.g. ~/.witnesschain.com/.encrypted_keys/operator.key",
-  "eth_rpc_url": "https://blue-orangutan-rpc.eu-north-2.gateway.fm",
+  "eth_rpc_url": "https://rpc.witnesschain.com",
 }
